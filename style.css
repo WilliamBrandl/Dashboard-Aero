@@ -3,29 +3,34 @@ body {
     color: #ffffff;
     font-family: Arial, sans-serif;
     padding: 2rem;
-  }
-  
-  h1 {
+
+}
+
+
+
+h1 {
     text-align: center;
-    color:red;
-    margin-bottom: 1rem;
-  }
-  
-  .grid {
+    color: red;
+    margin: 0.5rem 0 1.5rem 0; /* Traz o h1 bem para cima */
+    font-size: 3rem;
+
+}
+
+.grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1rem;
-  }
-  
-  .card {
+}
+
+.card {
     background-color: #1e1e1e;
     padding: 1rem;
     border-radius: 12px;
     position: relative;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  }
-  
-  .alerta {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.alerta {
     background-color: #ff5555;
     color: #fff;
     padding: 0.5rem;
@@ -33,19 +38,19 @@ body {
     text-align: center;
     border-radius: 8px;
     margin-bottom: 0.5rem;
-  }
-  
-  canvas {
+}
+
+canvas {
     width: 100% !important;
     max-height: 150px;
-  }
-  
-  .botoes {
+}
+
+.botoes {
     text-align: center;
     margin-bottom: 2rem;
-  }
-  
-  button {
+}
+
+button {
     background-color: #00d1b2;
     color: white;
     border: none;
@@ -54,30 +59,29 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     background-color: #00a896;
-  }
-  
-  .logo-container {
+}
+
+.logo-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: -2rem;
-  }
-  
-  .logo {
+}
+
+.logo {
     width: 200px;
     height: auto;
     margin: 1rem;
-  }
-  
-  .logo.direita {
+}
+
+.logo.direita {
     float: right;
-  }
-  
-  .logo.esquerda {
+}
+
+.logo.esquerda {
     float: left;
-  }
-  
+}
