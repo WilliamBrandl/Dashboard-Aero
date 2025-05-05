@@ -4,7 +4,7 @@ const fragrancias = [
   { nome: "PARIS WOOD", atual: 120, minimo: 250, maximo: 500, ultimaProducao: "2025-01-10" },
   { nome: "MADEIRAS NOBRES", atual: 20, minimo: 15, maximo: 50, ultimaProducao: "2025-01-10" },
   { nome: "CITRICO MALONE", atual: 20, minimo: 10, maximo: 20, ultimaProducao: "2025-01-10" },
-  { nome: "ALECRIM SILVESTRE", atual: 50, minimo: 140, maximo: 300, ultimaProducao: "2025-01-10" },
+  { nome: "ALECRIM SILVESTRE", atual: 500, minimo: 50, maximo: 300, ultimaProducao: "2025-01-10" },
   { nome: "BAMBOO NATURAL", atual: 85, minimo: 100, maximo: 300, ultimaProducao: "2025-01-10" },
   { nome: "CHÁ BRANCO", atual: 120, minimo: 80, maximo: 200, ultimaProducao: "2025-01-10" },
   { nome: "CHÁ VERDE COM BAMBOO", atual: 80, minimo: 130, maximo: 280, ultimaProducao: "2025-01-10" },
