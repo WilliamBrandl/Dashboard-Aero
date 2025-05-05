@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard Produção - Aerossol</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- Plugin de anotação -->
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0/dist/chartjs-plugin-annotation.min.js"></script>
+  <!-- Plugin de anotação -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0/dist/chartjs-plugin-annotation.min.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
+
 <body>
 
   <div class="logo-container">
@@ -24,18 +27,18 @@
     <h1>Controle de Aerossol</h1>
     <img src="assets/Logo La Belle.png" alt="Logo Empresa" class="logo direita">
   </div>
-  
-   
-   
-  
-  
+
+
+
+
+
 
   <div class="botoes">
     <button onclick="exportarPDF()">Exportar PDF</button>
     <button onclick="exportarExcel()">Exportar Excel</button>
   </div>
 
-  
+
 
 
   <div class="grid" id="fragranciasContainer">
@@ -43,14 +46,23 @@
   </div>
 
   <footer class="footer">
-    <p>Desenvolvido por Seu Nome © 2025</p>
+    <p>Desenvolvido por William Hatrwig Brandl © 2025</p>
     <div class="social-icons">
-      <a href="https://www.linkedin.com/in/william-hartwig-brandl" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/WilliamBrandl" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://www.instagram.com/W.brandl" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/william-hartwig-brandl" target="_blank" rel="noopener"
+        aria-label="Visite meu LinkedIn">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://github.com/WilliamBrandl" target="_blank" rel="noopener" aria-label="Visite meu GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://www.instagram.com/W.brandl" target="_blank" rel="noopener" aria-label="Visite meu Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+
+
     </div>
   </footer>
-  
+
 
   <script src="script.js"></script>
 </body>
