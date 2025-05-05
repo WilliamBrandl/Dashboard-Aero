@@ -3,17 +3,14 @@ body {
     color: #ffffff;
     font-family: Arial, sans-serif;
     padding: 2rem;
-
+    margin: 0;
 }
-
-
 
 h1 {
     text-align: center;
     color: red;
-    margin: 0.5rem 0 1.5rem 0; /* Traz o h1 bem para cima */
+    margin: 0.5rem 0 1.5rem 0;
     font-size: 3rem;
-
 }
 
 .grid {
@@ -48,6 +45,7 @@ canvas {
 .botoes {
     text-align: center;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
 }
 
 button {
@@ -69,6 +67,7 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     margin-bottom: -2rem;
 }
 
@@ -86,6 +85,35 @@ button:hover {
     float: left;
 }
 
+.footer {
+    background-color: #1e1e1e;
+    color: #ccc;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    border-top: 1px solid #333;
+}
+
+.footer .social-icons {
+    margin-top: 0.5rem;
+}
+
+.footer .social-icons a {
+    color: #ccc;
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.footer .social-icons a:hover {
+    color: #00d1b2;
+}
+
+
+/* ====================
+   RESPONSIVO PARA CELULAR
+   ==================== */
 @media (max-width: 600px) {
     body {
         padding: 1rem;
@@ -93,8 +121,6 @@ button:hover {
 
     h1 {
         font-size: 2rem;
-        margin-top: 1rem;
-        text-align: center;
     }
 
     .grid {
@@ -105,21 +131,17 @@ button:hover {
         padding: 0.8rem;
     }
 
+    .logo {
+        width: 140px;
+        margin: 0.5rem auto;
+        display: block;
+        float: none;
+    }
+
     .logo-container {
         flex-direction: column;
         align-items: center;
         margin-bottom: 1rem;
-    }
-
-    .logo {
-        width: 140px;
-        margin: 0.5rem 0;
-        float: none; /* Removendo flutuação */
-    }
-
-    .logo.direita,
-    .logo.esquerda {
-        float: none;
     }
 
     button {
