@@ -1,5 +1,5 @@
 const fragrancias = [
-  { nome: "CITRICO FRESCO", atual: 2000, minimo: 1000, maximo: 4000, ultimaProducao: "2025-04-01" },
+  { nome: "CITRICO FRESCO", atual: 2000, minimo: 1000, maximo: 4000, ultimaProducao: "2025-02-15" },
   { nome: "CAPRI", atual: 350, minimo: 150, maximo: 300, ultimaProducao: "2025-02-15" },
   { nome: "PARIS WOOD", atual: 120, minimo: 250, maximo: 500, ultimaProducao: "2025-01-10" },
   { nome: "MADEIRAS NOBRES", atual: 20, minimo: 15, maximo: 50, ultimaProducao: "2025-01-10" },
@@ -19,15 +19,12 @@ const fragrancias = [
   { nome: "NÉCTAR DO FIGO", atual: 20, minimo: 10, maximo: 100, ultimaProducao: "2025-01-10" },
   { nome: "JASMIM", atual: 20, minimo: 10, maximo: 20, ultimaProducao: "2025-01-10" },
   { nome: "ROSAS", atual: 20, minimo: 10, maximo: 20, ultimaProducao: "2025-01-10" },
-  // ...adicione mais fragrâncias
+  // ... outras fragrâncias
 ];
 
 const container = document.getElementById("fragranciasContainer");
 
-
-
-
-
+// Função para renderizar um card de fragrância
 function renderFragrancia(frag, index) {
   const card = document.createElement("div");
   card.className = "card";
@@ -54,8 +51,9 @@ function renderFragrancia(frag, index) {
 
   const ctx = document.getElementById(canvasId).getContext("2d");
   const perc = (frag.atual / frag.maximo) * 100;
-  let cor = perc < (frag.minimo / frag.maximo) * 100 ? "#ff5555" :
-            perc < 90 ? "#ffff00" : "#00FF00";
+  const minimoPerc = (frag.minimo / frag.maximo) * 100;
+
+  const cor = perc < minimoPerc ? "#ff5555" : perc < 90 ? "#ffff00" : "#00FF00";
 
   new Chart(ctx, {
     type: "bar",
@@ -84,8 +82,8 @@ function renderFragrancia(frag, index) {
           annotations: {
             line1: {
               type: 'line',
-              yMin: (frag.minimo / frag.maximo) * 100,
-              yMax: (frag.minimo / frag.maximo) * 100,
+              yMin: minimoPerc,
+              yMax: minimoPerc,
               borderColor: '#ff5555',
               borderWidth: 2,
               label: {
@@ -101,135 +99,73 @@ function renderFragrancia(frag, index) {
   });
 }
 
+// Inicializa todos os cards
+fragrancias.forEach((frag, index) => renderFragrancia(frag, index));
 
+// Função para exportar para Excel
+function exportarExcel() {
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.json_to_sheet(fragrancias);
+  XLSX.utils.book_append_sheet(wb, ws, "Fragrâncias");
+  XLSX.writeFile(wb, "fragrancias.xlsx");
+}
 
+// Função para exportar para PDF
+function exportarPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  doc.setFontSize(20);
+  doc.text("Relatório de Produção de Aerossóis", 20, 20);
 
-
-fragrancias.forEach((frag, index) => {
-  const card = document.createElement("div");
-  card.className = "card";
-
-
-
-
-
-
-
-  document.getElementById("importarPlanilha").addEventListener("change", function (e) {
-    const file = e.target.files[0];
-    if (!file) return;
-  
-    const reader = new FileReader();
-    reader.onload = function (event) {
-      const data = new Uint8Array(event.target.result);
-      const workbook = XLSX.read(data, { type: "array" });
-  
-      const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-      const jsonData = XLSX.utils.sheet_to_json(firstSheet);
-  
-      // Substituir fragrâncias com os dados importados
-      fragrancias.length = 0; // limpa o array original
-  
-      jsonData.forEach(row => {
-        fragrancias.push({
-          nome: row.nome || row.Nome,
-          atual: Number(row.atual || row.Atual),
-          minimo: Number(row.minimo || row.Mínimo),
-          maximo: Number(row.maximo || row.Máximo),
-          ultimaProducao: row.ultimaProducao || row["Última Produção"]
-        });
-      });
-  
-      // Atualizar a interface
-      container.innerHTML = ""; // limpa a exibição atual
-      fragrancias.forEach((f, i) => renderFragrancia(f, i)); // renderiza novamente
-    };
-  
-    reader.readAsArrayBuffer(file);
+  let y = 30;
+  fragrancias.forEach(frag => {
+    doc.text(`${frag.nome}: Estoque atual - ${frag.atual}, Mínimo - ${frag.minimo}, Máximo - ${frag.maximo}`, 20, y);
+    y += 10;
   });
-  
 
+  doc.save("relatorio_producao.pdf");
+}
 
+// Importação de planilha
 
+document.getElementById("importarPlanilha").addEventListener("change", function (e) {
+  const file = e.target.files[0];
+  if (!file) return;
 
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    const data = new Uint8Array(event.target.result);
+    const workbook = XLSX.read(data, { type: "array" });
+    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+    const jsonData = XLSX.utils.sheet_to_json(firstSheet);
 
+    fragrancias.length = 0;
 
+    jsonData.forEach(row => {
+      // Pegando o valor da última produção e tentando tratá-la corretamente
+      const dataProducao = row.ultimaProducao || row["Última Produção"];
+      let ultimaProducao = "";
 
-
-
-
-  const ultima = new Date(frag.ultimaProducao);
-  const proxima = new Date(ultima);
-  proxima.setMonth(proxima.getMonth() + 3);
-  const diasRestantes = Math.floor((proxima - new Date()) / (1000 * 60 * 60 * 24));
-
-  const alerta = diasRestantes <= 7
-    ? `<div class="alerta">⚠️ Produção em ${diasRestantes} dia(s)</div>` : "";
-
-  const canvasId = `grafico-${index}`;
-  card.innerHTML = `
-    ${alerta}
-    <h3>${frag.nome}</h3>
-    <canvas id="${canvasId}"></canvas>
-    <p>Estoque: ${frag.atual} / ${frag.maximo}</p>
-    <p>Quantidade mínima: ${frag.minimo}</p> <!-- Exibindo a quantidade mínima -->
-    <p>Última produção: ${ultima.toLocaleDateString()}</p>
-    <p>Próxima produção: ${proxima.toLocaleDateString()}</p>
-  `;
-  container.appendChild(card);
-
-  // Gráfico
-  const ctx = document.getElementById(canvasId).getContext("2d");
-  const perc = (frag.atual / frag.maximo) * 100;
-  let cor = perc < (frag.minimo / frag.maximo) * 100 ? "#ff5555" :
-            perc < 90 ? "#ffff00" : "#00FF00";
-
-  new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: [frag.nome],
-      datasets: [{
-        label: "% Estoque",
-        data: [perc],
-        backgroundColor: cor,
-      }]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 100,
-          ticks: {
-            callback: val => val + "%"
-          },
-          // Adicionando linha de mínima
-          grid: {
-            borderColor: frag.minimo / frag.maximo * 100, // cor da linha de mínima
-            borderWidth: 1,
-            lineWidth: 1
-          }
-        }
-      },
-      plugins: {
-        legend: { display: false },
-        annotation: { // Linha para mostrar o valor mínimo no gráfico
-          annotations: {
-            line1: {
-              type: 'line',
-              yMin: (frag.minimo / frag.maximo) * 100,
-              yMax: (frag.minimo / frag.maximo) * 100,
-              borderColor: '#ff5555', // Cor da linha
-              borderWidth: 2,
-              label: {
-                enabled: true,
-                content: 'Mínimo',
-                position: 'right'
-              }
-            }
-          }
-        }
+      // Verificando se a data é um número (série de data no Excel)
+      if (typeof dataProducao === "number") {
+        ultimaProducao = XLSX.SSF.format("YYYY-MM-DD", dataProducao); // Formata a data no padrão ISO
+      } else if (dataProducao) {
+        // Caso não seja um número, tentamos converter como string
+        ultimaProducao = new Date(dataProducao).toLocaleDateString();
       }
-    }
-  });
+
+      fragrancias.push({
+        nome: row.nome || row.Nome,
+        atual: Number(row.atual || row.Atual),
+        minimo: Number(row.minimo || row.Mínimo),
+        maximo: Number(row.maximo || row.Máximo),
+        ultimaProducao: ultimaProducao
+      });
+    });
+
+    container.innerHTML = "";
+    fragrancias.forEach((f, i) => renderFragrancia(f, i));
+  };
+
+  reader.readAsArrayBuffer(file);
 });
