@@ -18,6 +18,9 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"></script>
+
+
 </head>
 
 <body>
@@ -29,17 +32,16 @@
   </div>
 
 
-
-
-
-
   <div class="botoes">
     <button onclick="exportarPDF()">Exportar PDF</button>
     <button onclick="exportarExcel()">Exportar Excel</button>
+    
+    <label for="importarPlanilha" class="botao-importar">
+      Importar Planilha
+      <input type="file" id="importarPlanilha" accept=".xlsx" hidden />
+    </label>
   </div>
-
-
-
+  
 
   <div class="grid" id="fragranciasContainer">
     <!-- Cards serão gerados aqui -->
