@@ -217,3 +217,4 @@ document.getElementById("importarPlanilha").addEventListener("change", function 
 
   reader.readAsArrayBuffer(file);
 });
+

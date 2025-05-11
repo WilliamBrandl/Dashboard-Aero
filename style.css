@@ -133,60 +133,47 @@ button:hover {
     color: #00d1b2;
 }
 
-/* Media queries para responsividade em telas menores */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     body {
         padding: 1rem;
     }
 
     h1 {
-        font-size: 2rem;
-        margin: 1rem 0;
+        font-size: 1.8rem;
     }
 
     .grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 0.5rem;
+        grid-template-columns: 1fr;
     }
 
-    .card {
-        padding: 0.75rem;
-    }
-
-    .botoes {
+    .logo-container {
+        flex-direction: column;
+        align-items: center;
         margin-bottom: 1rem;
     }
 
     .logo {
-        width: 150px;
-        margin: 0.5rem;
+        width: 80%;
+        max-width: 140px;
+        margin: 0.5rem auto;
+        float: none;
+    }
+
+    .logo.direita,
+    .logo.esquerda {
+        float: none;
+    }
+
+    .botoes button,
+    .botao-importar {
+        display: none;
     }
 
     .footer {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
     }
 
     .footer .social-icons a {
         font-size: 1.2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.5rem;
-        margin: 0.5rem 0;
-    }
-
-    .logo {
-        width: 120px;
-        margin: 0.5rem;
-    }
-
-    .footer {
-        font-size: 0.7rem;
-    }
-
-    .footer .social-icons a {
-        font-size: 1rem;
     }
 }
