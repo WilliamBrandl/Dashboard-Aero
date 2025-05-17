@@ -1,3 +1,5 @@
+const container = document.getElementById("fragranciasContainer");
+
 const fragrancias = [
   { nome: "CITRICO FRESCO", atual: 2000, minimo: 1000, maximo: 4000, ultimaProducao: "2025-02-15" },
   { nome: "CAPRI", atual: 350, minimo: 150, maximo: 300, ultimaProducao: "2025-02-15" },
@@ -22,7 +24,9 @@ const fragrancias = [
   // ... outras fragrâncias
 ];
 
-const container = document.getElementById("fragranciasContainer");
+
+
+
 
 // Função para renderizar um card de fragrância
 function renderFragrancia(frag, index) {
