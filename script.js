@@ -19,8 +19,8 @@ const fragrancias = [
   { nome: "CIDADE JARDIM", atual: 20, minimo: 10, maximo: 100, ultimaProducao: "2025-01-10" },
   { nome: "FLORAL PROVANCE", atual: 20, minimo: 10, maximo: 20, ultimaProducao: "2025-01-10" },
   { nome: "NÉCTAR DO FIGO", atual: 20, minimo: 10, maximo: 100, ultimaProducao: "2025-01-10" },
-  { nome: "JASMIM", atual: 20, minimo: 10, maximo: 20, ultimaProducao: "2025-01-10" },
-  { nome: "ROSAS", atual: 20, minimo: 10, maximo: 20, ultimaProducao: "2025-01-10" },
+  { nome: "AERO", atual: 20, minimo: 10, maximo: 20, ultimaProducao: "2025-01-10" },
+  { nome: "INFINITY", atual: 20, minimo: 10, maximo: 20, ultimaProducao: "2025-01-10" },
   // ... outras fragrâncias
 ];
 
