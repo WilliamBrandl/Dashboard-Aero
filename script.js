@@ -99,6 +99,21 @@ function renderFragrancia(frag, index) {
   });
 }
 
+
+
+
+
+const fragranciasSalvas = localStorage.getItem("fragranciasSalvas");
+if (fragranciasSalvas) {
+  fragrancias.length = 0;
+  fragrancias.push(...JSON.parse(fragranciasSalvas));
+}
+
+
+
+
+
+
 // Inicializa todos os cards
 fragrancias.forEach((frag, index) => renderFragrancia(frag, index));
 
