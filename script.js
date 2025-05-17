@@ -218,3 +218,15 @@ document.getElementById("importarPlanilha").addEventListener("change", function 
   reader.readAsArrayBuffer(file);
 });
 
+document.getElementById("salvarImportacaoBtn").addEventListener("click", () => {
+  const senhaCorreta = "123456"; // 🔒 Defina a senha segura aqui
+  const senha = prompt("Digite a senha para salvar a importação:");
+
+  if (senha === senhaCorreta) {
+    // Simulando o "salvar", aqui salvamos no localStorage. Substitua por uma chamada para API se necessário.
+    localStorage.setItem("fragranciasSalvas", JSON.stringify(fragrancias));
+    alert("Importação salva com sucesso!");
+  } else {
+    alert("Senha incorreta. A importação não foi salva.");
+  }
+});
