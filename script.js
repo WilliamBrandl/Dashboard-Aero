@@ -245,6 +245,11 @@ document.getElementById("salvarImportacaoBtn").addEventListener("click", () => {
     // Simulando o "salvar", aqui salvamos no localStorage. Substitua por uma chamada para API se necessário.
     localStorage.setItem("fragranciasSalvas", JSON.stringify(fragrancias));
     alert("Importação salva com sucesso!");
+
+    container.innerHTML = "";
+    fragrancias.forEach((f, i) => renderFragrancia(f, i));
+
+
   } else {
     alert("Senha incorreta. A importação não foi salva.");
   }
